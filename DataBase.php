@@ -79,8 +79,9 @@ class DataBase{
         }
         else
         {
-            $delete = 'DELETE FROM'.$table.' WHERE '.$where;
+            $delete = 'DELETE FROM '.$table.' WHERE id = '.$where;
         }
+        var_dump($delete, $where);
         $del = $this->mysqli->query($delete);
         if($del)
         {
@@ -91,6 +92,25 @@ class DataBase{
             return false;
         }
     }
+    public function Search($table, $value)
+    {
+        $value .= '%';
+        $value = '%'.$value;
+        $value .= '\'';
+        $value = '\''.$value;
+        $q = 'SELECT * FROM '.$table.' WHERE content LIKE '.$value.' OR title LIKE '.$value;
+        var_dump($q);
+        $result = $this->mysqli->query($q);
+        $posts = array();
+        while($tmp = $result->fetch_assoc()) {
+            $posts[] = $tmp;
+        }
+        $result->close();
+        return $posts;
+
+
+    }
+
 
 
 }

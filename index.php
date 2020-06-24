@@ -20,14 +20,14 @@ include_once 'DataBase.php';
         $posts = $db->Select('posts');
         foreach ($posts AS $post) {
         ?>
-        <div class="col-lg-4">
+        <div class="col-lg-4"  id="<?php echo $post['id'];?>">
             <div class="card mb-4 mt-5 shadow-lg">
                 <img class="card-img-top"  src="https://via.placeholder.com/200x125?text=<?php echo $post['title']?>">
                 <div class="card-body">
                     <div class="card-text">
                         <p> <?php echo $post['content'] ?> </p>
                     </div>
-                    <button class="btn btn-danger" data-id="<?php echo $post['id'];?>"> Удалить пост</button>
+                    <a class="deletePost" data-id="<?php echo $post['id'];?>"><button class="btn btn-danger" name="deleteBtn">Удалить пост</button></a>
                 </div>
             </div>
         </div>
@@ -81,4 +81,17 @@ if(isset($_POST['submit']))
         exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
     }
 }
+if(isset($_POST['current_id']))
+{
+
+    $db->DeleteFromTable('posts', $_POST['current_id']);
+
+
+}
+if(isset($_POST['text']))
+{
+
+    $SearchPost = $db->Search('posts', $_POST['text']);
+}
+
 
