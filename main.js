@@ -20,15 +20,17 @@ $(document).ready(function(){
 
 
     $('#search').keyup(function () {
-        let text = $('#search').val();
+         let text = $('#search').val();
         jQuery.ajax({
             type: "POST",
-            url: "index.php",
+            url: "DataBase.php",
             data: {text:text},
+            dataType: "html",
             success: function(data){
 
 
-                    alert(data);
+                   $('.code').html(data);
+
 
             }
         });

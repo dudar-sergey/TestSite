@@ -14,6 +14,7 @@ include_once 'DataBase.php';
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Добавить запись</button>
         </div>
     </div>
+    <div class="code">
     <div class="row">
         <?php
         $db =  DataBase::getDB();
@@ -32,6 +33,7 @@ include_once 'DataBase.php';
             </div>
         </div>
     <?php }?>
+    </div>
     </div>
 </div>
 
@@ -81,6 +83,7 @@ if(isset($_POST['submit']))
         exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
     }
 }
+
 if(isset($_POST['current_id']))
 {
 
@@ -88,10 +91,6 @@ if(isset($_POST['current_id']))
 
 
 }
-if(isset($_POST['text']))
-{
 
-    $SearchPost = $db->Search('posts', $_POST['text']);
-}
 
 

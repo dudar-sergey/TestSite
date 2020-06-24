@@ -99,7 +99,6 @@ class DataBase{
         $value .= '\'';
         $value = '\''.$value;
         $q = 'SELECT * FROM '.$table.' WHERE content LIKE '.$value.' OR title LIKE '.$value;
-        var_dump($q);
         $result = $this->mysqli->query($q);
         $posts = array();
         while($tmp = $result->fetch_assoc()) {
@@ -114,3 +113,27 @@ class DataBase{
 
 
 }
+    if(isset($_POST['text']))
+    {
+        $db =  DataBase::getDB();
+        $SearchPost = $db->Search('posts', $_POST['text']);
+        echo '<div class="row">';
+        foreach ($SearchPost AS $post) {
+            ?>
+            <div class="col-lg-4"  id="<?php echo $post['id'];?>">
+                <div class="card mb-4 mt-5 shadow-lg">
+                    <img class="card-img-top"  src="https://via.placeholder.com/200x125?text=<?php echo $post['title']?>">
+                    <div class="card-body">
+                        <div class="card-text">
+                            <p> <?php echo $post['content'] ?> </p>
+                        </div>
+                        <a class="deletePost" data-id="<?php echo $post['id'];?>"><button class="btn btn-danger" name="deleteBtn">Удалить пост</button></a>
+                    </div>
+                </div>
+            </div>
+        <?php }
+
+        echo '</div>';
+
+
+   } ?>
