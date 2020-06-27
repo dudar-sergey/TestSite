@@ -80,7 +80,7 @@ if(isset($_POST['submit']))
         $value['title'] = $_POST['title'];
         $value['content'] = $_POST['content'];
         $db->Insert('posts', $value);
-        exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
+        exit("<meta http-equiv='refresh' content='0; url= /index.php'>"); //Hello
     }
 }
 
