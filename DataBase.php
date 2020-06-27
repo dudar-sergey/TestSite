@@ -2,17 +2,15 @@
 
 class DataBase{
 
-
-    private static $db = null;
     private $mysqli;
 
-    public static function getDB() {
+    /*public static function getDB() {
         if (self::$db == null) self::$db = new DataBase();
         return self::$db;
-    }
+    }*/
 
-    private function __construct() {
-        $this->mysqli = new mysqli("localhost", "root", "", "testDB");
+    public function __construct() {
+        $this->mysqli = new mysqli("localhost", "root", "", "testD");
         $this->mysqli->query("SET lc_time_names = 'ru_RU'");
         $this->mysqli->query("SET NAMES 'utf8'");
     }
@@ -115,7 +113,7 @@ class DataBase{
 }
     if(isset($_POST['text']))
     {
-        $db =  DataBase::getDB();
+        $db =  new DataBase();
         $SearchPost = $db->Search('posts', $_POST['text']);
         echo '<div class="row">';
         foreach ($SearchPost AS $post) {

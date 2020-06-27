@@ -17,7 +17,7 @@ include_once 'DataBase.php';
     <div class="code">
     <div class="row">
         <?php
-        $db =  DataBase::getDB();
+        $db =  new DataBase();
         $posts = $db->Select('posts');
         foreach ($posts AS $post) {
         ?>
